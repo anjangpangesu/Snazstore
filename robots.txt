@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Allow: /src/js/
+Allow: /asset/
 
 Sitemap: https://snazstore.my.id/sitemap.xml

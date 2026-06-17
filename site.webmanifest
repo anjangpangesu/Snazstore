@@ -1,0 +1,24 @@
+{
+  "name": "Snaz Store - Top Up Game Lengkap",
+  "short_name": "Snaz Store",
+  "description": "Platform Top Up Game dan Langganan Aplikasi Premium Termurah. Proses Instan dan Terpercaya!",
+  "icons": [
+    {
+      "src": "/asset/img/icon-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/asset/img/icon-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#b91c1c",
+  "background_color": "#111827",
+  "display": "standalone",
+  "start_url": "/",
+  "orientation": "portrait-primary"
+}

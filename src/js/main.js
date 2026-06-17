@@ -1,4 +1,4 @@
-﻿const defaultConfig = {
+const defaultConfig = {
     site_name: "Snaz Store",
     hero_title: "Instant Game Top Up",
     admin_whatsapp: "6287775314721",
@@ -1159,7 +1159,35 @@ function updateProductReviewStats() {
 }
 
 function renderProductDetail() {
-  if (!currentProduct) return;
+    if (!currentProduct) return;
+
+    // Inject dynamic JSON-LD Product Schema for SEO
+    let existingSchema = document.getElementById("dynamic-product-schema");
+    if (existingSchema) existingSchema.remove();
+    const minPrice = currentProduct.nominals && currentProduct.nominals.length > 0 ? Math.min(...currentProduct.nominals.map(n => n.price)) : 1000;
+    const schema = {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": currentProduct.name,
+      "image": currentProduct.image,
+      "description": "Top Up " + currentProduct.name + " termurah dan terpercaya di Snaz Store.",
+      "brand": {
+        "@type": "Brand",
+        "name": currentProduct.developer || "Developer"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "url": window.location.href,
+        "priceCurrency": "IDR",
+        "lowPrice": minPrice,
+        "availability": "https://schema.org/InStock"
+      }
+    };
+    const scriptTag = document.createElement("script");
+    scriptTag.id = "dynamic-product-schema";
+    scriptTag.type = "application/ld+json";
+    scriptTag.text = JSON.stringify(schema);
+    document.head.appendChild(scriptTag);
 
   document.title = "Snaz Store - Top Up " + currentProduct.name;
   
