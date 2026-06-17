@@ -3,4 +3,4 @@ Allow: /
 Allow: /src/js/
 Allow: /asset/
 
-Sitemap: https://snazstore.my.id/sitemap.xml
+Sitemap: https://snazstore.my.id/sitemap-index.xml
