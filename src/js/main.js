@@ -1,14 +1,14 @@
-const defaultConfig = {
-    site_name: "SnazStore",
+﻿const defaultConfig = {
+    site_name: "Snaz Store",
     hero_title: "Instant Game Top Up",
     admin_whatsapp: "6287775314721",
     gas_url: "https://script.google.com/macros/s/AKfycbwiwCUuCLFSRxiOlOT_PMPiQxAV7CwuBdIw8FQkhShjmx9z0GNicIZX6xVZefSBw_1yRQ/exec",
     chat_script_url: "https://script.google.com/macros/s/AKfycbw4LWC5Q-0Zsnxf_nnxUbxz924LyUuOZgbOMSAkBn_g0H9eM8BALWDjSjBN1vnoCrOOwQ/exec",
 };
 
-const CACHE_KEY = "snazstore_products_v1";
-const REVIEWS_CACHE_KEY = "snazstore_reviews_v1";
-const HISTORY_KEY = "snazstore_order_history";
+const CACHE_KEY = "Snaz Store_products_v1";
+const REVIEWS_CACHE_KEY = "Snaz Store_reviews_v1";
+const HISTORY_KEY = "Snaz Store_order_history";
 
 let config = {...defaultConfig };
 let products = [];
@@ -44,7 +44,7 @@ const sliders = {
 
 const translations = {
     id: {
-        sect_why_choose: "Mengapa Memilih <span class='fusion-text-gradient font-bold'>SnazStore</span>?",
+        sect_why_choose: "Mengapa Memilih <span class='fusion-text-gradient font-bold'>Snaz Store</span>?",
         limited_time: "Waktu Terbatas",
         starting_from: "Mulai dari IDR",
         flash_sale_price: "IDR",
@@ -66,7 +66,7 @@ const translations = {
         feat_fast_title: "Proses Cepat",
         feat_fast_desc: "Pengiriman instan dalam 1-5 menit setelah pembayaran",
         feat_trusted_title: "100% Terpercaya",
-        feat_trusted_desc: "Partner resmi SnazStore, aman dan 100% legal",
+        feat_trusted_desc: "Partner resmi Snaz Store, aman dan 100% legal",
         feat_guarantee_title: "Garansi Uang Kembali",
         feat_guarantee_desc: "Refund penuh jika pesanan gagal dalam 24 jam",
         sec_popular: "Produk Populer",
@@ -193,7 +193,7 @@ const translations = {
         btn_buy_again: "Beli Lagi",
     },
     en: {
-        sect_why_choose: "Why Choose <span class='fusion-text-gradient font-bold'>SnazStore</span>?",
+        sect_why_choose: "Why Choose <span class='fusion-text-gradient font-bold'>Snaz Store</span>?",
         limited_time: "Limited Time",
         starting_from: "Starting from IDR",
         flash_sale_price: "IDR",
@@ -215,7 +215,7 @@ const translations = {
         feat_fast_title: "Fast Process",
         feat_fast_desc: "Instant delivery within 1-5 minutes after payment",
         feat_trusted_title: "100% Trusted",
-        feat_trusted_desc: "Official SnazStore partner, secure and 100% legal",
+        feat_trusted_desc: "Official Snaz Store partner, secure and 100% legal",
         feat_guarantee_title: "Money Back Guarantee",
         feat_guarantee_desc: "Full refund if the order fails within 24 hours",
         sec_popular: "Popular Products",
@@ -464,10 +464,10 @@ async function pollBackgroundData() {
                 `${config.gas_url}?action=getHistoryOrders&orderIds=${orderIds}&_t=${Date.now()}`,
             );
             const freshData = await res.json();
-            const currentCache = localStorage.getItem("snazstore_history_data");
+            const currentCache = localStorage.getItem("Snaz Store_history_data");
             if (JSON.stringify(freshData) !== currentCache) {
                 localStorage.setItem(
-                    "snazstore_history_data",
+                    "Snaz Store_history_data",
                     JSON.stringify(freshData),
                 );
                 fullHistoryData = freshData;
@@ -1161,7 +1161,7 @@ function updateProductReviewStats() {
 function renderProductDetail() {
   if (!currentProduct) return;
 
-  document.title = "SnazStore - Top Up " + currentProduct.name;
+  document.title = "Snaz Store - Top Up " + currentProduct.name;
   
   document.getElementById("product-banner-img").src = currentProduct.banner;
   document.getElementById("product-image").src = currentProduct.image;
@@ -1565,7 +1565,7 @@ function renderOrderForm() {
   const container = document.getElementById("form-fields");
   const lang = translations[currentLang];
   const savedData = JSON.parse(
-    localStorage.getItem("snazstore_user_data") || "{}",
+    localStorage.getItem("Snaz Store_user_data") || "{}",
   );
 
   const isVoucher =
@@ -2127,7 +2127,7 @@ async function applyCoupon() {
     if (data.valid) {
       appliedCoupon = { code: code, discount: data.discount };
       msg.className = "text-xs mt-2 text-green-500 font-medium";
-      msg.textContent = `âœ“ ${data.message}`;
+      msg.textContent = `Ã¢Å“â€œ ${data.message}`;
 
       let finalPrice = basePrice - data.discount;
       if (finalPrice < 0) finalPrice = 0;
@@ -2141,7 +2141,7 @@ async function applyCoupon() {
     } else {
       appliedCoupon = null;
       msg.className = "text-xs mt-2 text-red-500";
-      msg.textContent = `âœ• ${data.message}`;
+      msg.textContent = `Ã¢Å“â€¢ ${data.message}`;
 
       priceContainer.innerHTML = `<div class="flex justify-between items-center"><span class="font-medium text-gray-900 dark:text-white">${lang.label_total}</span><span class="text-xl font-bold fusion-text-gradient">IDR ${formatPrice(basePrice)}</span></div>`;
     }
@@ -2218,7 +2218,7 @@ async function confirmOrder() {
   const saveCheck = document.getElementById("form-save-data");
   if (saveCheck && saveCheck.checked) {
     localStorage.setItem(
-      "snazstore_user_data",
+      "Snaz Store_user_data",
       JSON.stringify({
         saved: true,
         email: formData.email,
@@ -2229,7 +2229,7 @@ async function confirmOrder() {
       }),
     );
   } else {
-    localStorage.removeItem("snazstore_user_data");
+    localStorage.removeItem("Snaz Store_user_data");
   }
 
   const disc = parseFloat(selectedNominal.discount);
@@ -2461,7 +2461,7 @@ async function fetchFullHistory() {
   }
 
   const cachedHistoryData = JSON.parse(
-    localStorage.getItem("snazstore_history_data") || "[]",
+    localStorage.getItem("Snaz Store_history_data") || "[]",
   );
   if (cachedHistoryData.length > 0) {
     fullHistoryData = cachedHistoryData;
@@ -2481,7 +2481,7 @@ async function fetchFullHistory() {
 
     if (JSON.stringify(freshData) !== JSON.stringify(fullHistoryData)) {
       fullHistoryData = freshData;
-      localStorage.setItem("snazstore_history_data", JSON.stringify(freshData));
+      localStorage.setItem("Snaz Store_history_data", JSON.stringify(freshData));
       filterHistoryList();
     }
   } catch (e) {
@@ -2746,7 +2746,7 @@ async function submitReview(orderId, productId, productName) {
       if (orderIndex !== -1) {
         fullHistoryData[orderIndex].is_reviewed = true;
         localStorage.setItem(
-          "snazstore_history_data",
+          "Snaz Store_history_data",
           JSON.stringify(fullHistoryData),
         );
         filterHistoryList();
@@ -3158,7 +3158,7 @@ function setupSearch(inputId, resultsId) {
               <img src="${p.image}" alt="${p.name}" class="w-12 h-12 rounded-lg object-cover">
               <div class="flex-1">
                 <h4 class="font-medium text-sm text-gray-900 dark:text-white">${p.name}</h4>
-                <p class="text-xs text-gray-500 dark:text-gray-400 capitalize">${p.category} â€¢ ${p.developer}</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 capitalize">${p.category} Ã¢â‚¬Â¢ ${p.developer}</p>
               </div>
               <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
             </div>`,
