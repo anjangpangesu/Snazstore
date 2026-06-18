@@ -388,6 +388,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                 updateFilterButtons(".filter-btn", currentFilter);
                 renderAllGames("home");
             }
+            renderPopularGames();
             renderFlashSale();
             updateRealtimeStats();
 
@@ -2155,7 +2156,7 @@ async function applyCoupon() {
     if (data.valid) {
       appliedCoupon = { code: code, discount: data.discount };
       msg.className = "text-xs mt-2 text-green-500 font-medium";
-      msg.textContent = `Ã¢Å“â€œ ${data.message}`;
+      msg.textContent = `✓ ${data.message}`;
 
       let finalPrice = basePrice - data.discount;
       if (finalPrice < 0) finalPrice = 0;
@@ -2169,7 +2170,7 @@ async function applyCoupon() {
     } else {
       appliedCoupon = null;
       msg.className = "text-xs mt-2 text-red-500";
-      msg.textContent = `Ã¢Å“â€¢ ${data.message}`;
+      msg.textContent = `✕ ${data.message}`;
 
       priceContainer.innerHTML = `<div class="flex justify-between items-center"><span class="font-medium text-gray-900 dark:text-white">${lang.label_total}</span><span class="text-xl font-bold fusion-text-gradient">IDR ${formatPrice(basePrice)}</span></div>`;
     }
@@ -3186,7 +3187,7 @@ function setupSearch(inputId, resultsId) {
               <img src="${p.image}" alt="${p.name}" class="w-12 h-12 rounded-lg object-cover">
               <div class="flex-1">
                 <h4 class="font-medium text-sm text-gray-900 dark:text-white">${p.name}</h4>
-                <p class="text-xs text-gray-500 dark:text-gray-400 capitalize">${p.category} Ã¢â‚¬Â¢ ${p.developer}</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 capitalize">${p.category} • ${p.developer}</p>
               </div>
               <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
             </div>`,
